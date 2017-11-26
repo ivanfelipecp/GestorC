@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="midd-top-space">
+    <center>
+        <h1 class="font-big-size pacifico float-center animated fadeIn">Gestor-C</h1>
+        <div class="animated fadeIn delay-1 mini-top-space">
+            <form class="small-size-input" action="/Login/Index" method="post">
+                <div class="form-group row margin-form-left">
+                    <label class="">Email</label>
+                    <div class="">
+                        <input class="form-control" type="text" value="" name="correo" placeholder="Correo electrónico">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-form-left">
+                    <label class="">Contraseña</label>
+                    <div class="">
+                        <input class="form-control" type="password" value="" name="password" placeholder="Contraseña">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-form-left">
+                    <button type="submit" class="btn btn-primary float-left blue-bg">Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </center>
+</div>
+
