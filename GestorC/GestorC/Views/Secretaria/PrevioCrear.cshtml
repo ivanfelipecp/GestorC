@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "PrevioCrear";
+    Layout = "~/Views/Shared/SecretariaLayout.cshtml";
+}
+
+<div class="blue">
+    <h4><span class="glyphicon glyphicon-hand-right"></span> Previo > Crear</h4>
+</div>
+
+<!-- Codigo agregable aca ... -->
+<div>
+    <h1 class="francois">Crear sesión</h1>
+    <form class="small-size-input" id="notificar" action="/Secretaria/PrevioCrear" method="post">
+        <div class="form-group row margin-form-left">
+            <label for="example-number-input" class="">Número de sesión</label>
+            <div class="">
+                <input class="form-control" type="number" name="numero">
+            </div>
+        </div>
+
+        <div class="form-group row margin-form-left">
+            <label for="example-text-input" class="">Lugar</label>
+            <div class="">
+                <input class="form-control" type="text" name="lugar" placeholder="Digite el encabezado">
+            </div>
+        </div>
+
+        <div class="form-group row margin-form-left">
+            <label for="example-datetime-local-input" class="">Fecha y hora</label>
+            <div class="">
+                <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" name="fecha">
+            </div>
+        </div>
+
+        <div class="form-group row margin-form-left">
+            <button type="submit" class="btn btn-primary float-left blue-bg">Crear</button>
+        </div>
+    </form>
+</div>
+

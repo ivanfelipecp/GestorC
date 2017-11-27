@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "PrevioAgenda";
+    Layout = "~/Views/Shared/SecretariaLayout.cshtml";
+}
+
+<div class="blue">
+    <h4><span class="glyphicon glyphicon-hand-right"></span> Previo > Enviar Agenda</h4>
+</div>
+
+<!-- Tabla de la agenda-->
+<div>
+    <h1>Visualización previa de la agenda</h1>
+    <label>Puntos para el próximo consejo</label>
+    <table class="table table-medium">
+        <thead>
+            <tr class="th-header">
+                <th>Nombre del punto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="">
+                <td>Aprobación de la beca de Iván</td>
+            </tr>
+            <tr class="">
+                <td>Aprobación del intercambio de Adán</td>
+            </tr>
+            <tr class="">
+                <td>Solicitudes de cambio de carrera</td>
+            </tr>
+            <tr class="">
+                <td>Cambio en Bases de datos 2</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Div del form-->
+<div>
+    <h1 class="francois">Enviar agenda a los miembros del consejo</h1>
+    <form class="small-size-input" id="notificar" action="/Secretaria/PrevioAgenda" method="post">
+        <div class="form-group row margin-form-left">
+            <label for="example-text-input" class="">Encabezado</label>
+            <div class="">
+                <input class="form-control" type="text" name="encabezado" placeholder="Digite el encabezado">
+            </div>
+        </div>
+
+        <div class="form-group row margin-form-left">
+            <label for="example-text-area" class="">Cuerpo</label>
+            <div class="">
+                <!-- <input class="form-control" type="textarea" value="" id="example-text-area" placeholder="Digite el encabezado"> -->
+                <textarea name="cuerpo" rows="5" cols="45" form="notificar" placeholder="Digite el cuerpo"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row margin-form-left">
+            <button type="submit" class="btn btn-primary float-left blue-bg">Notificar</button>
+        </div>
+    </form>
+</div>

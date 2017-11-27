@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "PrevioNotificar";
+    Layout = "~/Views/Shared/SecretariaNoNavbar.cshtml";
+}
+
+<div class="blue">
+    <h4><span class="glyphicon glyphicon-hand-right"></span> Previo > Crear > Notificar</h4>
+    <!-- @Html.ActionLink("Descargar", "Download", "Secretaria", new { filename = "WBS", ext=".html"}, null) -->
+</div>
+
+<h1 class="francois">Notificar a los miembros del consejo</h1>
+<form class="small-size-input" id="notificar" action="/Secretaria/PrevioNotificar" method="post" enctype="multipart/form-data">
+    <div class="form-group row margin-form-left">
+        <label for="example-text-input" class="">Encabezado</label>
+        <div class="">
+            <input class="form-control" type="text" value="" name="encabezado" placeholder="Digite el encabezado">
+        </div>
+    </div>
+
+    <div class="form-group row margin-form-left">
+        <label for="example-text-area" class="">Cuerpo</label>
+        <div class="">
+            <!-- <input class="form-control" type="textarea" value="" id="example-text-area" placeholder="Digite el encabezado"> -->
+            <textarea name="cuerpo" rows="5" cols="70" form="notificar" placeholder="Digite el cuerpo"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row margin-form-left">
+        <label for="example-file-input" class="">Memorando de justificación</label>
+        <div class="">
+            <input class="form-control form-control-file" type="file" name="file1" id="file1id">
+            <small class="form-text text-muted">Seleccione el archivo</small>
+        </div>
+    </div>
+
+    <div class="form-group row margin-form-left">
+        <button type="submit" class="btn btn-primary float-left blue-bg">Notificar</button>
+    </div>
+</form>
+
