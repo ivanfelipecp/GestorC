@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Despues";
+    Layout = "~/Views/Shared/SecretariaLayout.cshtml";
+}
+
+<div class="container blue">
+    <h4><span class="glyphicon glyphicon-hand-right"></span> Después</h4>
+</div>
+
+<hr />
+
+<div class="container">
+    <!-- Codigo agregable aca ... -->
+    <div class="row">
+
+        <div class="col-sm-2 div-border-right">
+                <h4>Descargar acta de sesión</h4>
+                <form action="/Secretaria/Descargar" method="post">
+
+                    <div class="form-group row margin-form-left">
+                        <label>Seleccionar Sesión</label>
+                        <select name="sesion">
+                            <option value="prueba">Sesion Prueba</option>
+                            <option value="2">Sesion 2</option>
+                            <option value="3">Sesion 3</option>
+                            <option value="4">Sesion 4</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group row margin-form-left">
+                        <label>Descargar acta</label>
+                        <select name="tipo">
+                            <option value=1>Word</option>
+                            <option value=2>XML</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group row margin-form-left">
+                        <button type="submit" class="btn btn-primary float-left blue-bg">Descargar</button>
+                    </div>
+                </form>
+        </div>
+
+        <div class="col-sm-3">
+            <h4>Asociar acta a sesión</h4> <br />
+            <form class="large-size-input" action="/Secretaria/AsociarActa" method="post" enctype="multipart/form-data">
+
+                <div class="form-group row margin-form-left">
+                    <label>Seleccionar sesión</label>
+                    <select name="sesion">
+                        <option value="1">Sesion 1</option>
+                        <option value="2">Sesion 2</option>
+                        <option value="3">Sesion 3</option>
+                        <option value="4">Sesion 4</option>
+                    </select>
+                </div>
+                
+                <div class="form-group row margin-form-left">
+                    <label for="example-email-input" class="">Seleccionar acta</label>
+                    <div class="">
+                        <input class="form-control form-control-file" type="file" name="file" id="fileID">
+                        <small id="fileHelp" class="form-text text-muted">Seleccione el archivo</small>
+                    </div>
+                </div>
+
+                <div class="form-group row margin-form-left">
+                    <button type="submit" class="btn btn-primary float-left blue-bg">Subir</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-7 div-border-left">
+                <h1>Generación de acuerdos</h1>
+                <table class="table large-size-input">
+                    <thead>
+                        <tr class="th-header">
+                            <th class="float-left">Nombre de punto</th>
+                            <th class="float-right">Generar acuerdo</th>
+                            <!-- <th class="float-right">Gestionar</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="float-left">Punto 1</td>
+                            <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
+                            <!-- <td class="float-right"><a href="">Modificar</a></td> -->
+                        </tr>
+                        <tr>
+                            <td class="float-left">Punto 2</td>
+                            <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
+                            <!-- <td class="float-right"><a href="">Modificar</a></td> -->
+                        </tr>
+                        <tr>
+                            <td class="float-left">Punto 3</td>
+                            <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
+                            <!-- <td class="float-right"><a href="">Modificar</a></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+

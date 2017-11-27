@@ -142,7 +142,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SecretariaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -187,9 +186,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -197,9 +193,16 @@
     <Content Include="Views\Shared\Navbar\_Secretaria.cshtml" />
     <Content Include="Views\Shared\SecretariaLayout.cshtml" />
     <Content Include="Views\Secretaria\Index.cshtml" />
+    <Content Include="Views\Secretaria\PrevioAgenda.cshtml" />
+    <Content Include="Views\Shared\SecretariaNoNavbar.cshtml" />
+    <Content Include="Views\Secretaria\PrevioNotificar.cshtml" />
+    <Content Include="Views\Secretaria\PrevioCrear.cshtml" />
+    <Content Include="Views\Secretaria\Durante.cshtml" />
+    <Content Include="Views\Secretaria\Despues.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\actas\" />
+    <Folder Include="App_Data\uploads\" />
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>

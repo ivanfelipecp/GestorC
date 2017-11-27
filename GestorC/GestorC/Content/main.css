@@ -79,15 +79,19 @@ a {
 }
 
 .large-size-input {
-    width: 100%;
+    width: 60%;
 }
 
 .margin-form-left {
-    margin-left: 15px;
+    margin-left: 1px;
 }
 
 .margin-form-right {
-    margin-left: 15px;
+    margin-right: 0px;
+}
+
+.margin-left{
+    margin-left: 5%;
 }
 
 .top-space {

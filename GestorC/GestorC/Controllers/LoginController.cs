@@ -8,6 +8,7 @@ namespace GestorC.Controllers
 {
     public class LoginController : Controller
     {
+
         // GET: Login
         [HttpGet]
         public ActionResult Index()
