@@ -262,4 +262,4 @@ __pycache__/
 *.ide
 *.ide-shm
 
-GestorC/.vs
+/GestorC/.vs
