@@ -8,204 +8,84 @@ using System.Collections.ObjectModel;
 
 namespace GestorC.Models
 {
-    public class UberController
+    public class UberController : Subject_Observer
     {
-        Gestor g;
-        string PCmiembro;
+        private static UberController instance;
+        private static int cantQuorum;
+        private Collection<Observer> observers = new Collection<Observer>();
+        private static bool cargado;
+        private static ControladorProyecto1 controlador;
 
-        public UberController()
-        {
-            this.g = new Gestor();
-            g.cargarDatos();
+        private UberController() { }
 
-            if (g.haySesion() && !Quorum.Instance.isCargado())
-            {
-                foreach (char c in g.getSesion().MiembrosAsistencia.ListaAsistencia)
-                {
-                    if (c == 'P')
-                    {
-                        Quorum.Instance.modificarQuorum(true);
-                    }
-                }
-                Quorum.Instance.cargarQuorum();
-            }
-
-            PC = "aj@gmail.com";
-
-        }
-
-        public String PC
+        public static UberController Instance
         {
             get
             {
-                return PCmiembro;
+                if (instance == null)
+                {
+                    instance = new UberController();
+                    cantQuorum = 0;
+                    cargado = false;
+                    controlador = new ControladorProyecto1();
+                }
+                return instance;
             }
+        }
 
-            set
+        public ControladorProyecto1 getControlador()
+        {
+            return controlador;
+        }
+
+        public int getQuorum()
+        {
+            return cantQuorum;
+        }
+
+        public void modificarQuorum(bool accion)
+        {
+            if (accion)
             {
-                PCmiembro = value;
+                cantQuorum++;
             }
+            else
+            {
+                cantQuorum--;
+            }
+
+            notificarObservadores();
         }
 
-        public void nuevaSesion(String num, DateTime fecha, string lugar)
+        public void cargarQuorum()
         {
-            g.nuevaSesion(num, fecha, lugar);
+            cargado = true;
         }
 
-        public void cerrarSesion()
+        public bool isCargado()
         {
-            g.cerrarSesion();
-
+            return cargado;
         }
 
-        public void actualizarMiembros(String path)
+        public void registrarObserver(Observer o)
         {
-            g.actualizarMiembros(path);
+            observers.Add(o);
         }
 
-
-        public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
+        public void eliminarObserver(Observer o)
         {
-            g.agregarSolicitud(nombre, resultando, considerandos, seAcuerda, tipo);
+            observers.Remove(o);
         }
 
-        public void agregarPuntoAgenda(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
+        public void notificarObservadores()
         {
-            g.agregarPuntoAgenda(nombre, resultando, considerandos, seAcuerda, tipo);
-        }
-
-        public void agregarComentario(int idPunto, string correoMiembro, string txt)
-        {
-            g.agregarComentario(idPunto, correoMiembro, txt);
-        }
-
-        public void eliminarSolicitud(int id)
-        {
-            g.eliminarSolicitud(id);
-        }
-
-        public void eliminarPuntoAgenda(int id)
-        {
-            g.eliminarPuntoAgenda(id);
-        }
-
-        public void aceptarSolicitud(int id)
-        {
-            g.aceptarSolicitud(id);
-        }
-
-        public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
-        {
-            g.agregarVotacion(id, aFavor, enContra, blanco);
-        }
-
-        public void crearAgenda(string sesion, string path)
-        {
-            g.crearAgenda(sesion, path);
-        }
-        public void crearActa(int tipo, string path)
-        {
-            g.crearActa(tipo, path);
-        }
-
-        public void modificarAsistencia(string correoMiembro, bool estado)
-        {
-            g.modificarAsistencia(correoMiembro, estado);
-        }
-
-        public Collection<PuntoAgenda> getSolicitudes()
-        {
-            return g.getSolicitudes();
-        }
-
-        public Collection<PuntoAgenda> getPuntosAgenda()
-        {
-            return g.getPuntosAgenda();
-        }
-
-        public Prototype_Miembros getAsistencia()
-        {
-            return g.getAsistencia();
-        }
-
-        public Collection<Miembro> getMiembrosConsejo()
-        {
-            return g.getMiembrosConsejo();
-        }
-
-        public Collection<Comentario> getComentarios(int idPunto)
-        {
-            return g.getComentarios(idPunto);
-        }
-
-        public bool haySesion()
-        {
-            return g.haySesion();
-        }
-
-        public void cambiarPosicionPunto(int posicionNueva, int posicionVieja)
-        {
-            g.cambiarPosicionPunto(posicionNueva, posicionVieja);
-        }
-
-        public Collection<string> getAllNumeroSesiones()
-        {
-            return g.getAllNumeroSesiones();
-        }
-
-        public void enviarNotificacion(string numeroSesion, DateTime fecha, string correo, string pathMemo)
-        {
-            g.enviarNotificacion(numeroSesion, fecha, correo, pathMemo);
-        }
-
-        public void enviarAgenda(string numeroSesion, DateTime fecha, string correo, string agenda)
-        {
-            g.enviarAgenda(numeroSesion, fecha, correo, agenda);
-        }
-
-        public void obtenerAgenda(Sesion sesion, string path)
-        {
-            g.obtenerAgenda(sesion, path);
-        }
-
-        public void asociarActa(string numSesion, string path, string nombreArchivo)
-        {
-            g.asociarActa(numSesion, path, nombreArchivo);
-        }
-
-        public void obtenerActa(string numSesion, string path)
-        {
-            g.obtenerActa(numSesion, path);
-        }
-
-        public void asociarAdjunto(int idPunto, string path, string nombreArchivo, string extension)
-        {
-            g.asociarAdjunto(idPunto, path, nombreArchivo, extension);
-        }
-
-        public Collection<String> getAdjuntos(int idPunto)
-        {
-            return g.getAdjuntos(idPunto);
-        }
-
-        public void obtenerAdjunto(int idPunto, string nombreAdjunto, string path)
-        {
-            g.obtenerAdjunto(idPunto, nombreAdjunto, path);
-        }
-
-        public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)
-        {
-            g.crearAcuerdo(punto, destinatario, path);
-        }
-
-        public Sesion getSesion()
-        {
-            return g.getSesion();
-        }
-
-        public Sesion getSesion(string numero)
-        {
-            return g.getSesion(numero);
+            if (observers.Any())
+            {
+                foreach (Observer o in observers)
+                {
+                    o.notificarCambioQuorum();
+                }
+            }
         }
     }
 }
