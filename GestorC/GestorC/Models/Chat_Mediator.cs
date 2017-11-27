@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Proyecto2Consola.Controlador_central
+namespace GestorC.Models
 {
     class Chat_Mediator : Mediator
     {

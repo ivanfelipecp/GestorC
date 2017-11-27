@@ -8,19 +8,20 @@ using System.Collections.ObjectModel;
 
 namespace GestorC.Models
 {
-    public class Facade_M : Subject_Observer, Subject_Proxy
+    public class Facade_PC : Subject_Observer, Subject_Proxy
     {
         ControladorProyecto1 controller;
 
         Collection<Observer> observers = new Collection<Observer>();
 
-        public Facade_M()
+        public Facade_PC()
         {
             controller = UberController.Instance.getControlador();
         }
-        public void acceso_Miembro()
+
+        public void acceso_Presidente()
         {
-            Console.WriteLine("acceso al dashboard de miembros");
+            Console.WriteLine("acceso al dashboard del presi");
         }
 
         public void log_out()
@@ -31,6 +32,36 @@ namespace GestorC.Models
         public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
         {
             controller.agregarSolicitud(nombre, resultando, considerandos, seAcuerda, tipo);
+        }
+
+        public void agregarPuntoAgenda(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
+        {
+            controller.agregarPuntoAgenda(nombre, resultando, considerandos, seAcuerda, tipo);
+        }
+
+        public void eliminarSolicitud(int id)
+        {
+            controller.eliminarSolicitud(id);
+        }
+
+        public void eliminarPuntoAgenda(int id)
+        {
+            controller.eliminarPuntoAgenda(id);
+        }
+
+        public void aceptarSolicitud(int id)
+        {
+            controller.aceptarSolicitud(id);
+        }
+
+        public Collection<PuntoAgenda> getSolicitudes()
+        {
+            return controller.getSolicitudes();
+        }
+
+        public void cambiarPosicionPunto(int posicionNueva, int posicionVieja)
+        {
+            controller.cambiarPosicionPunto(posicionNueva, posicionVieja);
         }
 
         public void asociarAdjunto(int idPunto, string path, string nombreArchivo, string extension)
@@ -84,27 +115,7 @@ namespace GestorC.Models
             throw new NotImplementedException();
         }
 
-        public void agregarPuntoAgenda(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
-        {
-            throw new NotImplementedException();
-        }
-
         public void agregarComentario(int idPunto, string correoMiembro, string txt)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void eliminarSolicitud(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void eliminarPuntoAgenda(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void aceptarSolicitud(int id)
         {
             throw new NotImplementedException();
         }
@@ -125,11 +136,6 @@ namespace GestorC.Models
         }
 
         public void modificarAsistencia(string correoMiembro, bool estado)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Collection<PuntoAgenda> getSolicitudes()
         {
             throw new NotImplementedException();
         }
@@ -155,11 +161,6 @@ namespace GestorC.Models
         }
 
         public bool haySesion()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void cambiarPosicionPunto(int posicionNueva, int posicionVieja)
         {
             throw new NotImplementedException();
         }
