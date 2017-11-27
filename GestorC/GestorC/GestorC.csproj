@@ -149,12 +149,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Chat_Mediator.cs" />
     <Compile Include="Models\Facade_M.cs" />
+    <Compile Include="Models\Mediator.cs" />
     <Compile Include="Models\Observer.cs" />
     <Compile Include="Models\Quorum.cs" />
     <Compile Include="Models\Subject_Proxy.cs" />
     <Compile Include="Models\Subject_Observer.cs" />
     <Compile Include="Models\UberController.cs" />
+    <Compile Include="Models\Usuario_Chat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
