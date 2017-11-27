@@ -9,7 +9,7 @@ namespace GestorC.Controllers
 {
     public class SecretariaController : Controller
     {
-        Chat_Mediator c = new Chat_Mediator();
+        
         // GET: Secretaria
         [HttpGet]
         public ActionResult Index()

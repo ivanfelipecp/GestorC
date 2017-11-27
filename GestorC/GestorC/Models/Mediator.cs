@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestorC.Models
 {
-    interface Mediator
+    public interface Mediator
     {
         void agregarUsuario(Usuario_Chat u);
 
