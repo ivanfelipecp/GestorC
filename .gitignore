@@ -265,3 +265,5 @@ __pycache__/
 ./GestorC/.vs/
 .vs/
 .vs
+sqlite3/
+sqlite3
