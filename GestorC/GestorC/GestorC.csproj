@@ -152,9 +152,11 @@
     <Compile Include="Models\Chat_Mediator.cs" />
     <Compile Include="Models\ControladorProyecto1.cs" />
     <Compile Include="Models\Facade_M.cs" />
+    <Compile Include="Models\Facade_PC.cs" />
+    <Compile Include="Models\Facade_SC.cs" />
     <Compile Include="Models\Mediator.cs" />
     <Compile Include="Models\Observer.cs" />
-    <Compile Include="Models\Quorum.cs" />
+    <Compile Include="Models\Proxy.cs" />
     <Compile Include="Models\Subject_Proxy.cs" />
     <Compile Include="Models\Subject_Observer.cs" />
     <Compile Include="Models\UberController.cs" />

@@ -10,6 +10,7 @@ namespace GestorC.Models
 {
     public interface Subject_Proxy
     {
+
         void nuevaSesion(String num, DateTime fecha, string lugar);
 
         void cerrarSesion();
@@ -33,7 +34,7 @@ namespace GestorC.Models
 
         void crearAgenda(string sesion, string path);
 
-        void crearActa(int tipo, string path);
+        void crearActa(string numSesion, int tipo, string path);
 
         void modificarAsistencia(string correoMiembro, bool estado);
 

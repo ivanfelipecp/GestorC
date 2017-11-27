@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
-namespace Proyecto2Consola.Controlador_central
+namespace GestorC.Models
 {
     interface Usuario_Chat
     {
@@ -14,5 +14,7 @@ namespace Proyecto2Consola.Controlador_central
         void recibirMensaje(string mensaje);
 
         void setMediator(Mediator m);
+
+        string getUsuario();
     }
 }
