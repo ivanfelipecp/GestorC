@@ -8,40 +8,28 @@ using System.Collections.ObjectModel;
 
 namespace GestorC.Models
 {
-    class Proxy : Observer, Subject_Proxy, Usuario_Chat
+    public class Proxy : Observer, Subject_Proxy, Usuario_Chat
     {
         Subject_Proxy fachada;
-        const int fachadaM = 0;
-        const int fachadaSC = 1;
-        const int fachadaPC = 2;
+        private const int fachadaM = 0;
+        private const int fachadaSC = 1;
+        private const int fachadaPC = 2;
 
-        string usuario;
+        private Miembro usuario;
         bool logueado = false;
 
         ControladorProyecto1 controller;
 
         Mediator mediatorChat;
 
-        public Proxy(string usuario, string contrasena)
+        public Proxy()
         {
             controller = UberController.Instance.getControlador();
 
-            bool resultado = login(usuario, contrasena);
-
-            if (resultado)
-            {
-                logueado = true;
-                this.usuario = usuario;
-            }
-            else
-            {
-                fachada = null;
-                logueado = false;
-            }
-
+            //login(usuario, contrasena);
         }
 
-        public bool login(string usuario, string contrasena)
+        public int login(string usuario, string contrasena)
         {
             if (usuario == contrasena)
             {
@@ -49,7 +37,8 @@ namespace GestorC.Models
                 {
                     setFachada(fachadaSC);
                     Console.WriteLine("SC conectado/a...");
-                    return true;
+                    this.logueado = true;
+                    return fachadaSC;
                 }
                 else
                 {
@@ -57,27 +46,33 @@ namespace GestorC.Models
                     {
                         if (m.Correo.Contains(usuario))
                         {
+                            int ret = 0;
                             Console.WriteLine(usuario + " / " + controller.PC);
                             if (usuario == controller.PC)
                             {
                                 setFachada(fachadaPC);
+                                ret = fachadaPC;
                                 Console.WriteLine("PC conectado/a...");
                             }
                             else
                             {
                                 setFachada(fachadaM);
+                                ret = fachadaM;
                                 Console.WriteLine("Miembro conectado/a...");
                             }
-
-                            return true;
-
+                            this.usuario = m;
+                            this.logueado = true;
+                            return ret;
                         }
                     }
                 }
 
             }
 
-            return false;
+            this.fachada = null;
+            this.logueado = false;
+
+            return -1;
         }
 
         public void setFachada(int tipo)
@@ -266,7 +261,7 @@ namespace GestorC.Models
 
         public void enviarMensaje(string mensaje)
         {
-            mediatorChat.enviarMensaje(mensaje, this.usuario);
+            mediatorChat.enviarMensaje(mensaje, this.usuario.Nombre);
         }
 
         public void recibirMensaje(string mensaje)
@@ -279,9 +274,29 @@ namespace GestorC.Models
             mediatorChat = m;
         }
 
-        public string getUsuario()
+        public Miembro getUsuario()
         {
             return usuario;
+        }
+
+        public bool isLogueado()
+        {
+            return this.logueado;
+        }
+
+        public int getFachadaM()
+        {
+            return fachadaM;
+        }
+
+        public int getFachadaSC()
+        {
+            return fachadaSC;
+        }
+
+        public int getFachadaPC()
+        {
+            return fachadaPC;
         }
     }
 }

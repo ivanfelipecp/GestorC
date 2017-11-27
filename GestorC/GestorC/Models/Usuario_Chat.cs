@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Proyecto1.Modelo;
 
 namespace GestorC.Models
 {
-    interface Usuario_Chat
+    public interface Usuario_Chat
     {
         void enviarMensaje(string mensaje);
 
@@ -15,6 +16,6 @@ namespace GestorC.Models
 
         void setMediator(Mediator m);
 
-        string getUsuario();
+        Miembro getUsuario();
     }
 }

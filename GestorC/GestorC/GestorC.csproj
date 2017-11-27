@@ -153,7 +153,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SecretariaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,16 +165,20 @@
     <Compile Include="Models\Facade_SC.cs" />
     <Compile Include="Models\Mediator.cs" />
     <Compile Include="Models\Observer.cs" />
+    <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Proxy.cs" />
     <Compile Include="Models\Subject_Proxy.cs" />
     <Compile Include="Models\Subject_Observer.cs" />
     <Compile Include="Models\UberController.cs" />
     <Compile Include="Models\Usuario_Chat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\VM_Login.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\uploads\Clases.py" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -183,6 +188,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\actas\Acta Sesión Ordinaria - prueba.doc" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -207,13 +213,22 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Secretaria\Despues.cshtml" />
+    <Content Include="Views\Secretaria\Durante.cshtml" />
+    <Content Include="Views\Secretaria\Index.cshtml" />
+    <Content Include="Views\Secretaria\PrevioAgenda.cshtml" />
+    <Content Include="Views\Secretaria\PrevioCrear.cshtml" />
+    <Content Include="Views\Secretaria\PrevioNotificar.cshtml" />
+    <Content Include="Views\Shared\Navbar\_Secretaria.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Index.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Shared\SecretariaLayout.cshtml" />
+    <Content Include="Views\Shared\SecretariaNoNavbar.cshtml" />
+    <Content Include="Views\Login\Prueba1.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

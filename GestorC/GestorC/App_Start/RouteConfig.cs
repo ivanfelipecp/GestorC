@@ -16,8 +16,8 @@ namespace GestorC
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Login", action = "Index"}
+                url: "{controller}/{action}/{msg}",
+                defaults: new { controller = "Login", action = "Index", msg = UrlParameter.Optional }
             );
         }
     }

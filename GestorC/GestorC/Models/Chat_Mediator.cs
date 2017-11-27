@@ -17,7 +17,14 @@ namespace GestorC.Models
         {
             foreach (Usuario_Chat u in usuarios)
             {
-                u.recibirMensaje(usuario + "said: " + mensaje);
+                if(u.getUsuario().Correo[0] == usuario)
+                {
+                    u.enviarMensaje(mensaje);
+                }
+                else
+                {
+                    u.recibirMensaje(usuario + "said: " + mensaje);
+                }   
             }
         }
     }
