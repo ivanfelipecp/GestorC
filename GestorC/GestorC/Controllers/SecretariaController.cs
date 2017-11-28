@@ -92,8 +92,10 @@ namespace GestorC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Despues()
+        public ActionResult Despues(string sesion)
         {
+            // getiamos la sesion
+            return Content(sesion);
             return View();
         }
 
