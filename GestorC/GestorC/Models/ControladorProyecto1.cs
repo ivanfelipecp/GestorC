@@ -122,6 +122,18 @@ namespace GestorC.Models
             return g.getPuntosAgenda();
         }
 
+        public PuntoAgenda getPunto(int id, string sesion)
+        {
+            foreach(PuntoAgenda p in g.getSesion(sesion).Agenda)
+            {
+                if(p.Id_punto == id)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
+
         public Prototype_Miembros getAsistencia()
         {
             return g.getAsistencia();

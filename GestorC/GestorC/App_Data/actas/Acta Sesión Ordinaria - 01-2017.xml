@@ -1,0 +1,62 @@
+<Sesión>
+  <Número Número="01-2017" />
+  <FechaHora Fecha="10/24/2017" Hora="12:00 a. m." />
+  <Lugar Lugar="CIC" />
+  <Agenda>
+    <Punto>
+      <Descripción>
+        <Nombre Nombre="Nombre del punto 2 de la agenda" />
+        <Resultados Resultados="Estos son los resultandos del punto 2" />
+        <Considerandos Considerandos="Estos son los considerandos del punto 2" />
+        <SeAcuerda SeAcuerda="Por lo tanto, se acuerda que tanto y tanto..." />
+      </Descripción>
+      <Votación VotosAFavor="26" VotosEnContra="4" Abstenciones="1" />
+      <Comentarios />
+    </Punto>
+    <Punto>
+      <Descripción>
+        <Nombre Nombre="Nombre del punto 1 de la agenda" />
+        <Resultados Resultados="Estos son los resultandos del punto 1" />
+        <Considerandos Considerandos="Estos son los considerandos del punto 1" />
+        <SeAcuerda SeAcuerda="Por lo tanto, se acuerda que tanto y tanto..." />
+      </Descripción>
+      <Votación VotosAFavor="30" VotosEnContra="1" Abstenciones="0" />
+      <Comentarios>
+        <Comentario>
+          <Miembro Nombre="Adan Mora" />
+          <Contenido Comentario="Este es un comentario que hice con fines ilustrativos" />
+        </Comentario>
+        <Comentario>
+          <Miembro Nombre="Kirstein Gatjens" />
+          <Contenido Comentario="Este comentario lo hizo Kirstein!!!! No está de acuedo con nada :c" />
+        </Comentario>
+      </Comentarios>
+    </Punto>
+    <Punto>
+      <Descripción>
+        <Nombre Nombre="Nombre del puntdsad" />
+        <Resultados Resultados="Estos son sadsa" />
+        <Considerandos Considerandos="Esdd" />
+        <SeAcuerda SeAcuerda="Por lo tanto, se acuerda que tanto y tanto..." />
+      </Descripción>
+      <Votación VotosAFavor="0" VotosEnContra="0" Abstenciones="0" />
+      <Comentarios />
+    </Punto>
+    <Punto>
+      <Descripción>
+        <Nombre Nombre="Nombre del punto 5 de la agenda" />
+        <Resultados Resultados="Estos son los resultandos del punto 5" />
+        <Considerandos Considerandos="Estos son los considerandos del punto 5" />
+        <SeAcuerda SeAcuerda="Por lo tanto, se acuerda que tanto y tanto..." />
+      </Descripción>
+      <Votación VotosAFavor="0" VotosEnContra="0" Abstenciones="0" />
+      <Comentarios />
+    </Punto>
+  </Agenda>
+  <Asistencia>
+    <Miembro Nombre="Adan Mora" Estado="Presente" />
+    <Miembro Nombre="Ericka Solano" Estado="Ausente" />
+    <Miembro Nombre="Kirstein Gatjens" Estado="Ausente" />
+    <Miembro Nombre="Fauricio Navarro" Estado="Ausente" />
+  </Asistencia>
+</Sesión>

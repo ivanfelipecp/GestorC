@@ -1,5 +1,6 @@
 ﻿using GestorC.Models;
 using GestorC.ViewModels;
+using Proyecto1.Modelo;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -169,17 +170,28 @@ namespace GestorC.Controllers
         }
 
         [HttpPost]
-        public ActionResult AsociarActa(string sesion, HttpPostedFileBase file)
+        public ActionResult AsociarActa(HttpPostedFileBase file, string sess)
         {
             if (file != null)
             {
                 var fileName = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/App_Data/uploads/"), fileName);
                 file.SaveAs(path);
+                UberController.Instance.getControlador().asociarActa(sess, path, Path.GetFileNameWithoutExtension(file.FileName));
                 // proxy.asociarActa(sesion,path,Path.GetFileNameWithoutExtension(file.FileName))
-                return Content(path);
+                return RedirectToAction("Despues","Secretaria", new { sesion = sess});
             }
-            return Content("es nulo");
+            return Content("No time 4 validations");
+        }
+
+        [HttpGet]
+        public ActionResult Acuerdo(string idPunto, string destinatario, string sesion)
+        {
+            PuntoAgenda p = UberController.Instance.getControlador().getPunto(int.Parse(idPunto), sesion);
+            UberController.Instance.getControlador().crearAcuerdo(p, destinatario, Server.MapPath("~/App_Data/acuerdos"));
+
+
+            return RedirectToAction("Download","Secretaria", new { filename = "Acuerdo Punto - " + p.Nombre + ".pdf", path = Server.MapPath("~/App_Data/acuerdos/")});
         }
 
     }

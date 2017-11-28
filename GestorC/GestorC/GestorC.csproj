@@ -239,6 +239,7 @@
     <Content Include="Views\Login\Prueba1.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\acuerdos\" />
     <Folder Include="App_Data\agendas\" />
   </ItemGroup>
   <ItemGroup>

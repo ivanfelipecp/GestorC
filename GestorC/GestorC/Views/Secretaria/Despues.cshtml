@@ -38,18 +38,7 @@
 
         <div class="col-sm-3">
             <h4>Asociar acta a sesión</h4> <br />
-            <form class="large-size-input" action="/Secretaria/AsociarActa" method="post" enctype="multipart/form-data">
-
-                <div class="form-group row margin-form-left">
-                    <label>Seleccionar sesión</label>
-                    <select name="sesion">
-                        <option value="1">Sesion 1</option>
-                        <option value="2">Sesion 2</option>
-                        <option value="3">Sesion 3</option>
-                        <option value="4">Sesion 4</option>
-                    </select>
-                </div>
-                
+            <form class="large-size-input" action="/Secretaria/AsociarActa" method="post" enctype="multipart/form-data">                
                 <div class="form-group row margin-form-left">
                     <label for="example-email-input" class="">Seleccionar acta</label>
                     <div class="">
@@ -58,6 +47,8 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="sess" value="@Model.sesionSeleccionada.Numero" />
+
                 <div class="form-group row margin-form-left">
                     <button type="submit" class="btn btn-primary float-left blue-bg">Subir</button>
                 </div>
@@ -65,33 +56,44 @@
         </div>
 
         <div class="col-sm-7 div-border-left">
-                <h1>Generación de acuerdos</h1>
-                <table class="table large-size-input">
-                    <thead>
-                        <tr class="th-header">
-                            <th class="float-left">Nombre de punto</th>
-                            <th class="float-right">Generar acuerdo</th>
-                            <!-- <th class="float-right">Gestionar</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
+            <h1>Generación de acuerdos</h1>
+            <label>Destinarario</label>
+            <input class="" type="text" id="destinatario">
+            <table class="table large-size-input mini-top-space">
+                <thead>
+                    <tr class="th-header">
+                        <th class="float-left">Nombre de punto</th>
+                        <th class="float-right"></th>
+                        <!-- <th class="float-right">Gestionar</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach(var p in Model.sesionSeleccionada.Agenda)
+                    {
                         <tr>
-                            <td class="float-left">Punto 1</td>
-                            <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
-                            <!-- <td class="float-right"><a href="">Modificar</a></td> -->
+                            <td class="float-left">@p.Nombre</td>
+                            <!-- <td class="float-right"><a href='@Url.Action("Acuerdo", "Secretaria")?idPunto=@p.Id_punto&destinatario="+"document.getElementById('destinatario').value'>Generar & Descargar</a></td> -->
+                            <td><input type="button" class="btn btn-primary float-right blue-bg" value="Generar & Descargar" onclick="location.href='@Url.Action("Acuerdo", "Secretaria")?idPunto=@p.Id_punto&destinatario=' + document.getElementById('destinatario').value+'&sesion=@Model.sesionSeleccionada.Numero'" /></td>
                         </tr>
-                        <tr>
-                            <td class="float-left">Punto 2</td>
-                            <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
-                            <!-- <td class="float-right"><a href="">Modificar</a></td> -->
-                        </tr>
-                        <tr>
-                            <td class="float-left">Punto 3</td>
-                            <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
-                            <!-- <td class="float-right"><a href="">Modificar</a></td> -->
-                        </tr>
-                    </tbody>
-                </table>
+                    }
+                    <!-- <tr>
+                        <td class="float-left">Punto 1</td>
+                        <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
+                        <!-- <td class="float-right"><a href="">Modificar</a></td> 
+                    </tr>
+                    <tr>
+                        <td class="float-left">Punto 2</td>
+                        <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
+                        <!-- <td class="float-right"><a href="">Modificar</a></td> 
+                    </tr>
+                    <tr>
+                        <td class="float-left">Punto 3</td>
+                        <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
+                        <!-- <td class="float-right"><a href="">Modificar</a></td> 
+                    </tr> -->
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
