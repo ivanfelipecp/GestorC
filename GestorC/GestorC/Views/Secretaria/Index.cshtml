@@ -17,11 +17,11 @@
     {
         if (Model.GetUberController().getControlador().getSesion(s).Estado)
         {
-            <li class="list-group-item">@Html.ActionLink(s, "Despues", "Secretaria", new { sesion = s})</li>
+            <li class="list-group-item">@Html.ActionLink(s, "Despues", "Secretaria", new { sesion = s})<span class="badge red-bg">Cerrada</span></li>
         }
         else
         {
-
+            <li class="list-group-item">@Html.ActionLink(s, "Durante", "Secretaria", new { sesion = s })<span class="badge blue-bg">Abierta</span></li>
         }
 
     }

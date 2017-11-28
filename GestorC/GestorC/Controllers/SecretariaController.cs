@@ -68,8 +68,9 @@ namespace GestorC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Durante()
+        public ActionResult Durante(string sesion)
         {
+            return Content(sesion);
             return View();
         }
 
