@@ -24,7 +24,7 @@ namespace GestorC.Models
                 {
                     if (c == 'P')
                     {
-                        UberController.Instance.modificarQuorum(true);
+                        UberController.Instance.setQuorum(1);
                     }
                 }
                 UberController.Instance.cargarQuorum();

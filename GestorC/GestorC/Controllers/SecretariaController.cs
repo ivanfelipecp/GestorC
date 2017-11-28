@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GestorC.Models;
+using GestorC.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,7 +16,9 @@ namespace GestorC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+
+            return View(new VM_Secretaria() { proxy = prox});
         }
 
         [HttpGet]

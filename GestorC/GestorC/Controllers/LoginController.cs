@@ -9,7 +9,6 @@ namespace GestorC.Controllers
 {
     public class LoginController : Controller
     {
-        
         // GET: Login
         [HttpGet]
         public ActionResult Index(string msg)
@@ -22,20 +21,25 @@ namespace GestorC.Controllers
         public ActionResult Index(string correo, string password)
         {
             Proxy proxy = new Proxy();
-            Session["current"] = proxy;
+            
             int n = proxy.login(correo, password);
             if (proxy.isLogueado() && n > -1)
             {
                 int pc = proxy.getFachadaPC();
                 int sc = proxy.getFachadaSC();
                 int m =  proxy.getFachadaM();
-                if(n == proxy.getFachadaPC())
+                Session["current"] = correo;
+
+                UberController.Instance.addUsuario(proxy);
+                //return Content(UberController.Instance.getProxys().Count.ToString());
+
+                if (n == proxy.getFachadaPC())
                 {
                     return Content("PC");
                 }
                 else if(n == sc){
 
-                    return Content("SC");
+                    return RedirectToAction("Index","Secretaria");
                 }
                 else
                 {

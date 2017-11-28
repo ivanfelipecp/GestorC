@@ -38,6 +38,7 @@ namespace GestorC.Models
                     setFachada(fachadaSC);
                     Console.WriteLine("SC conectado/a...");
                     this.logueado = true;
+                    this.usuario = new Miembro("Rorita","sc","sc",'A');
                     return fachadaSC;
                 }
                 else
@@ -62,6 +63,7 @@ namespace GestorC.Models
                             }
                             this.usuario = m;
                             this.logueado = true;
+                            //fachada.registrarObserver();
                             return ret;
                         }
                     }
@@ -80,15 +82,21 @@ namespace GestorC.Models
             switch (tipo)
             {
                 case fachadaM:
-                    fachada = new Facade_M();
+                    Facade_M f = new Facade_M();
+                    f.registrarObserver(this);
+                    fachada = f;
                     break;
 
                 case fachadaSC:
-                    fachada = new Facade_SC();
+                    Facade_SC fa = new Facade_SC();
+                    fa.registrarObserver(this);
+                    fachada = fa;
                     break;
 
                 case fachadaPC:
-                    fachada = new Facade_PC();
+                    Facade_PC fac = new Facade_PC();
+                    fac.registrarObserver(this);
+                    fachada = fac;
                     break;
             }
         }

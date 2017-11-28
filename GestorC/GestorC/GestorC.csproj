@@ -172,7 +172,7 @@
     <Compile Include="Models\UberController.cs" />
     <Compile Include="Models\Usuario_Chat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\VM_Login.cs" />
+    <Compile Include="ViewModels\VM_Secretaria.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\uploads\Clases.py" />

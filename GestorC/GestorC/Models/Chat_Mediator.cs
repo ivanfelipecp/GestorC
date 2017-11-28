@@ -2,7 +2,7 @@
 
 namespace GestorC.Models
 {
-    class Chat_Mediator : Mediator
+    public class Chat_Mediator : Mediator
     {
         Collection<Usuario_Chat> usuarios = new Collection<Usuario_Chat>();
 
