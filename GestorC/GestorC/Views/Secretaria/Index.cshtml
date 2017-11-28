@@ -7,27 +7,60 @@
 <div class="blue">
     <h4><span class="glyphicon glyphicon-hand-right"></span> Home</h4>
 </div>
-
 <h1 class="francois blue">Bienvenido al gestor de sesiones de consejo</h1>
 
-<label>Historial de sesiones</label>
+<hr />
 
-<ul class="list-group small-size-input">
-    @foreach (var s in Model.GetUberController().getControlador().getAllNumeroSesiones())
-    {
-        if (Model.GetUberController().getControlador().getSesion(s).Estado)
-        {
-            <li class="list-group-item"><a href="@Url.Action("Despues", "Secretaria", new { sesion = s})">@s</a><span class="badge red-bg">Cerrada</span></li>
-        }
-        else
-        {
-            <li class="list-group-item"><a href="@Url.Action("Durante", "Secretaria", new { sesion = s})">@s</a><span class="badge blue-bg">Abierta</span></li>
-        }
+<div class="row">
+   <div class="col-sm-8">
+       <label>Historial de sesiones</label>
+       <ul class="list-group small-size-input">
+           @foreach (var s in Model.GetUberController().getControlador().getAllNumeroSesiones())
+           {
+               if (Model.GetUberController().getControlador().getSesion(s).Estado == null)
+               {
+                   <li class="list-group-item"><a href="@Url.Action("PrevioAgenda", "Secretaria", new { sesion = s})">@s</a><span class="badge blue-bg">Creada</span></li>
+               }
+               else if (Model.GetUberController().getControlador().getSesion(s).Estado.Value)
+               {
+                   <li class="list-group-item"><a href="@Url.Action("Despues", "Secretaria", new { sesion = s})">@s</a><span class="badge red-bg">Cerrada</span></li>
+               }
+               else
+               {
+                   <li class="list-group-item"><a href="@Url.Action("Durante", "Secretaria", new { sesion = s})">@s</a><span class="badge green-bg">Abierta</span></li>
+               }
+           }
+       </ul>
+   </div>
 
-    }
-    <!-- <li class="list-group-item"><a href="">Sesión #5</a><span class="badge green-bg">En proceso</span></li>
-    <li class="list-group-item"><a href="">Sesión #4</a><span class="badge blue-bg">Abierta</span></li>
-    <li class="list-group-item"><a href="">Sesión #3</a><span class="badge red-bg">Terminada</span></li>
-    <li class="list-group-item"><a href="">Sesión #2</a><span class="badge red-bg">Terminada</span></li>
-    <li class="list-group-item"><a href="">Sesión #1</a><span class="badge red-bg">Terminada</span></li>-->
-</ul>
+    <div class="col-sm-4">
+        <label>Crear & Actualizar</label>
+        <div>
+            <a class="btn btn-primary blue-bg" href="@Url.Action("PrevioCrear", "Secretaria")">Crear sesión</a> 
+        </div>
+
+        <!-- archivo -->
+        <div>
+            <label><h3>Actualizar miembros</h3></label>
+            <button type="button" class="btn btn-primary blue-bg" data-toggle="collapse" data-target="#miembros"><span class="glyphicon glyphicon-menu-down"></span></button>
+            <div id="miembros" class="collapse">
+                <form class="medium-size-input" id="comentario" action="/Secretaria/ActualizarMiembros" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group row margin-form-left">
+                        <label for="example-email-input" class="">Seleccionar acta</label>
+                        <div class="">
+                            <input class="form-control form-control-file" type="file" name="file" id="fileID">
+                            <small id="fileHelp" class="form-text text-muted">Seleccione el archivo</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row margin-form-left">
+                        <button type="submit" class="btn btn-primary float-left blue-bg">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

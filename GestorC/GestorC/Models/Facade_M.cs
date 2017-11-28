@@ -208,5 +208,10 @@ namespace GestorC.Models
         {
             throw new NotImplementedException();
         }
+
+        public void iniciarSesion(string sesion)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

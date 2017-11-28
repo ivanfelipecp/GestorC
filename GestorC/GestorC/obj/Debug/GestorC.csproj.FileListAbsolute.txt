@@ -276,3 +276,9 @@ C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\Microsoft.AI.
 C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\Microsoft.AI.Web.xml
+C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\Proyecto1.dll
+C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\Excel.dll
+C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\itextsharp.dll
+C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\Excel.pdb
+C:\Users\ivanfelipecp\Documents\GitHub\GestorC\GestorC\GestorC\bin\itextsharp.xml

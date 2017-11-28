@@ -22,28 +22,20 @@ namespace GestorC.Controllers
         }
 
         [HttpGet]
-        public ActionResult PrevioAgenda()
+        public ActionResult PrevioAgenda(string sesion)
         {
-            return View();
+
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            // return Content(sesion);
+            return View(new VM_Secretaria() { proxy = prox, sesionSeleccionada = UberController.Instance.getControlador().getSesion(sesion) });
         }
 
         [HttpPost]
-        public ActionResult PrevioAgenda(string encabezado, string cuerpo)
+        public ActionResult PrevioAgendaPost(string sesion)
         {
             // aqui se hace algo con encabezado y cuerpo, luego se envia al otro view
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
 
-            return RedirectToAction("");
-        }
-
-        [HttpGet]
-        public ActionResult PrevioNotificar()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult PrevioNotificar(string cuerpo, string encabezado, HttpPostedFileBase file1)
-        {
             /* if (file1 != null)
             {
                 var fileName = Path.GetFileName(file1.FileName);
@@ -51,20 +43,63 @@ namespace GestorC.Controllers
                 file1.SaveAs(path);
                 return Content(file1.ToString());
             } */
-            
-            return Content(cuerpo +"-"+ encabezado + "-" + "file");
+
+            UberController.Instance.getControlador().crearAgenda(sesion, Path.Combine(Server.MapPath("~/App_Data/agendas")));
+            DateTime fecha = UberController.Instance.getControlador().getSesion(sesion).Fecha;
+            UberController.Instance.getControlador().enviarAgenda(sesion, fecha, "fauriciocr@gmail.com", Path.Combine(Server.MapPath("~/App_Data/agendas/Agenda Sesión Ordinaria-"+sesion+".pdf")));
+            return RedirectToAction("Index","Secretaria");
         }
+
+        /*[HttpGet]
+        public ActionResult PrevioNotificar()
+        {
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+
+            return View(new VM_Secretaria() { proxy = prox });
+            
+        }
+
+        [HttpPost]
+        public ActionResult PrevioNotificar(string cuerpo, string encabezado)
+        {
+            /* if (file1 != null)
+            {
+                var fileName = Path.GetFileName(file1.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads/"), fileName);
+                file1.SaveAs(path);
+                return Content(file1.ToString());
+            } 
+            //UberController.Instance.getControlador().no
+            return Content(cuerpo +"-"+ encabezado + "-" + "file");
+        }*/
 
         [HttpGet]
         public ActionResult PrevioCrear()
         {
-            return View();
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            return View(new VM_Secretaria() { proxy = prox });
         }
 
         [HttpPost]
         public ActionResult PrevioCrear(int numero, string lugar, DateTime fecha)
         {
-            return Content(numero + lugar + fecha.ToString());
+            UberController.Instance.getControlador().nuevaSesion(numero.ToString() + "-" + fecha.Year.ToString(), fecha, lugar);
+            UberController.Instance.getControlador().enviarNotificacion(numero.ToString(), fecha, "fauriciocr@gmail.com",Path.Combine(Server.MapPath("~/App_Data/uploads/MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc")));
+            return RedirectToAction("Index");
+            //aaca
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarMiembros(HttpPostedFileBase file)
+        {
+            if(file != null)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads/"), fileName);
+                file.SaveAs(path);
+                UberController.Instance.getControlador().actualizarMiembros(path);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -96,17 +131,18 @@ namespace GestorC.Controllers
         [HttpGet]
         public ActionResult Despues(string sesion)
         {
-            // getiamos la sesion
-            //return Content(sesion);
-
-            return View();
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            // return Content(sesion);
+            return View(new VM_Secretaria() { proxy = prox, sesionSeleccionada = UberController.Instance.getControlador().getSesion(sesion) });
         }
 
         [HttpPost] // acta
-        public ActionResult Descargar(string sesion, int tipo)
+        public ActionResult Descargar(int tipo, string sesion)
         {
+
             // Con sesion tenemos el número
             // proxy(sesion,tipo,Server.MapPath("~")+"\\App_Data\\actas")
+            UberController.Instance.getControlador().crearActa(sesion, tipo, Server.MapPath("~/App_Data/actas"));
             string e = "";
             switch (tipo)
             {

@@ -209,5 +209,10 @@ namespace GestorC.Models
         {
             throw new NotImplementedException();
         }
+
+        public void iniciarSesion(string sesion)
+        {
+            controller.iniciarSesion(sesion);
+        }
     }
 }

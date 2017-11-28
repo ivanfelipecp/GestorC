@@ -206,5 +206,10 @@ namespace GestorC.Models
         {
             return g.getSesion(numero);
         }
+
+        public void iniciarSesion(string sesion)
+        {
+            g.iniciarSesion(sesion);
+        }
     }
 }

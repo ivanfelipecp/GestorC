@@ -306,5 +306,10 @@ namespace GestorC.Models
         {
             return fachadaPC;
         }
+
+        public void iniciarSesion(string sesion)
+        {
+            fachada.iniciarSesion(sesion);
+        }
     }
 }

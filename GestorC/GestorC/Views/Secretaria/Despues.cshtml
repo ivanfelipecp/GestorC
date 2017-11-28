@@ -1,8 +1,10 @@
-﻿
+﻿@model GestorC.ViewModels.VM_Secretaria
 @{
     ViewBag.Title = "Despues";
     Layout = "~/Views/Shared/SecretariaLayout.cshtml";
 }
+
+<h3>Sesión @Model.sesionSeleccionada.Numero</h3>
 
 <div class="container blue">
     <h4><span class="glyphicon glyphicon-hand-right"></span> Después</h4>
@@ -19,22 +21,14 @@
                 <form action="/Secretaria/Descargar" method="post">
 
                     <div class="form-group row margin-form-left">
-                        <label>Seleccionar Sesión</label>
-                        <select name="sesion">
-                            <option value="prueba">Sesion Prueba</option>
-                            <option value="2">Sesion 2</option>
-                            <option value="3">Sesion 3</option>
-                            <option value="4">Sesion 4</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group row margin-form-left">
                         <label>Descargar acta</label>
                         <select name="tipo">
                             <option value=1>Word</option>
                             <option value=2>XML</option>
                         </select>
                     </div>
+
+                    <input type="hidden" name="sesion" value="@Model.sesionSeleccionada.Numero"/>
 
                     <div class="form-group row margin-form-left">
                         <button type="submit" class="btn btn-primary float-left blue-bg">Descargar</button>

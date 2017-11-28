@@ -76,7 +76,7 @@ namespace GestorC.Models
 
         Sesion getSesion(string numero);
 
-
+        void iniciarSesion(string sesion);
 
         //private Facade_M miembro_C;
         //private Facade_PC presidente_C;
