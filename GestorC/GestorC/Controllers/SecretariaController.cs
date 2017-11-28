@@ -70,8 +70,9 @@ namespace GestorC.Controllers
         [HttpGet]
         public ActionResult Durante(string sesion)
         {
-            return Content(sesion);
-            return View();
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            // return Content(sesion);
+            return View(new VM_Secretaria() { proxy = prox, sesionSeleccionada = UberController.Instance.getControlador().getSesion(sesion)});
         }
 
         [HttpGet]
@@ -96,7 +97,8 @@ namespace GestorC.Controllers
         public ActionResult Despues(string sesion)
         {
             // getiamos la sesion
-            return Content(sesion);
+            //return Content(sesion);
+
             return View();
         }
 
