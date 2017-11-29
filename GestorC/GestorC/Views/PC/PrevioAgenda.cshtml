@@ -1,0 +1,72 @@
+﻿@model GestorC.ViewModels.VM_Secretaria
+@{
+    ViewBag.Title = "PrevioAgenda";
+    Layout = "~/Views/Shared/SecretariaLayout.cshtml";
+}
+
+<div class="blue">
+    <h4><span class="glyphicon glyphicon-hand-right"></span> @Model.sesionSeleccionada.Numero > selección de puntos</h4>
+</div>
+<h1 class="francois blue">Puntos para la sesión @Model.sesionSeleccionada.Numero</h1>
+
+<hr />
+
+<div class="row">
+    @if (!Model.GetUberController().getControlador().getSolicitudes().Any())
+    {
+        <h1 class="col-sm-6">No hay solicitudes de puntos</h1>
+    }
+    else
+    {
+        <div class="col-sm-6">
+            <table class="table">
+                <thead>
+                    <tr class="th-header">
+                        <th class="float-left">Nombre</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.GetUberController().getControlador().getSolicitudes())
+                {
+                        <tr>
+                            <td class="float-left">@p.Nombre</td>
+                            <td class="float-center"><a href="@Url.Action("AgregarPunto", "PC", new { id = p.Id_punto.ToString(), sess = Model.sesionSeleccionada.Numero})">Agregar</a></td>
+                            <td class="float-right"><a href="@Url.Action("EliminarPunto", "PC", new { id = p.Id_punto.ToString(), sess = Model.sesionSeleccionada.Numero})">Eliminar</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+
+    <!-- puntos -->
+    @if (!Model.sesionSeleccionada.Agenda.Any())
+    {
+        <h1 class="col-sm-6">No hay puntos en la agenda @Model.sesionSeleccionada.Numero</h1>
+    }
+    else
+    {
+        <div class="col-sm-6">
+            <table class="table">
+                <thead>
+                    <tr class="th-header">
+                        <th class="float-left">Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.sesionSeleccionada.Agenda)
+                    {
+                        <tr>
+                            <td class="float-left">@p.Nombre</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+

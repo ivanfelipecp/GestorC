@@ -57,43 +57,35 @@
 
         <div class="col-sm-7 div-border-left">
             <h1>Generación de acuerdos</h1>
-            <label>Destinarario</label>
-            <input class="" type="text" id="destinatario">
-            <table class="table large-size-input mini-top-space">
-                <thead>
-                    <tr class="th-header">
-                        <th class="float-left">Nombre de punto</th>
-                        <th class="float-right"></th>
-                        <!-- <th class="float-right">Gestionar</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach(var p in Model.sesionSeleccionada.Agenda)
-                    {
-                        <tr>
-                            <td class="float-left">@p.Nombre</td>
-                            <!-- <td class="float-right"><a href='@Url.Action("Acuerdo", "Secretaria")?idPunto=@p.Id_punto&destinatario="+"document.getElementById('destinatario').value'>Generar & Descargar</a></td> -->
-                            <td><input type="button" class="btn btn-primary float-right blue-bg" value="Generar & Descargar" onclick="location.href='@Url.Action("Acuerdo", "Secretaria")?idPunto=@p.Id_punto&destinatario=' + document.getElementById('destinatario').value+'&sesion=@Model.sesionSeleccionada.Numero'" /></td>
+            @if (!Model.sesionSeleccionada.Agenda.Any())
+            {
+                <h3>No hay puntos de agenda</h3>
+            }
+            else
+            {
+                <label>Destinarario</label>
+                <input class="" type="text" id="destinatario">
+                <table class="table large-size-input mini-top-space">
+                    <thead>
+                        <tr class="th-header">
+                            <th class="float-left">Nombre de punto</th>
+                            <th class="float-right"></th>
+                            <!-- <th class="float-right">Gestionar</th> -->
                         </tr>
-                    }
-                    <!-- <tr>
-                        <td class="float-left">Punto 1</td>
-                        <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
-                        <!-- <td class="float-right"><a href="">Modificar</a></td> 
-                    </tr>
-                    <tr>
-                        <td class="float-left">Punto 2</td>
-                        <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
-                        <!-- <td class="float-right"><a href="">Modificar</a></td> 
-                    </tr>
-                    <tr>
-                        <td class="float-left">Punto 3</td>
-                        <td class="float-right"><a href="despues-acuerdo.html">Generar</a></td>
-                        <!-- <td class="float-right"><a href="">Modificar</a></td> 
-                    </tr> -->
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var p in Model.sesionSeleccionada.Agenda)
+                        {
+                            <tr>
+                                <td class="float-left">@p.Nombre</td>
+                                <!-- <td class="float-right"><a href='@Url.Action("Acuerdo", "Secretaria")?idPunto=@p.Id_punto&destinatario="+"document.getElementById('destinatario').value'>Generar & Descargar</a></td> -->
+                                <td><input type="button" class="btn btn-primary float-right blue-bg" value="Generar & Descargar" onclick="location.href='@Url.Action("Acuerdo", "Secretaria")?idPunto=@p.Id_punto&destinatario=' + document.getElementById('destinatario').value+'&sesion=@Model.sesionSeleccionada.Numero'" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
         </div>
     </div>
 </div>

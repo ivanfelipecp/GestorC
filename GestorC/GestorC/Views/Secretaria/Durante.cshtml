@@ -1,4 +1,4 @@
-﻿
+﻿@model GestorC.ViewModels.VM_Secretaria
 @{
     ViewBag.Title = "Durante";
     Layout = "~/Views/Shared/SecretariaLayout.cshtml";
@@ -11,10 +11,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <h1 class="float-left">Sesión actual</h1>
+            <h1 class="float-left">Sesión @Model.sesionSeleccionada.Numero</h1>
         </div>
         <div class="col-sm-6">
-            <h1 class="float-right">Quórum: 2 personas</h1>
+            <h1 class="float-right">Quórum: @Model.GetUberController().getQuorum().ToString() personas</h1>
         </div>
     </div>
 
@@ -26,44 +26,57 @@
         <div class="col-sm-2 div-border-right">
             <center>
                 <label>Personas presentes</label>
-                <table class="table list-size">
-                    <thead>
-                        <tr class="th-header">
-                            <th class="float-left">Nombre</th>
-                            <th class="float-right">Cambiar Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="success">
-                            <td class="float-left">Iván</td>
-                            <td class="float-right">@Html.ActionLink("Ausente","Asistencia","Secretaria", new { correo = "ivanfelipecp", estado = true}, null)</td>
-                        </tr>
-                        <tr class="success">
-                            <td class="float-left">Adán</td>
-                            <td class="float-right"><a href="">Ausente</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                @if (!Model.GetUberController().usuariosPresentes().Any())
+                {
+                    <h3>No se encuentran usuarios presentes</h3>
+                }
+                else
+                {
+                    <table class="table list-size">
+                        <thead>
+                            <tr class="th-header">
+                                <th class="float-left">Nombre</th>
+                                <th class="float-right">Cambiar Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var m in Model.GetUberController().usuariosPresentes())
+                            {
+                                <tr>
+                                    <td class="float-left">@m.Nombre</td>
+                                    <td><a href="@Url.Action("CambiarEstado", "Secretaria", new { correo = m.Correo[0], estado = false, sess = Model.sesionSeleccionada.Numero})">Ausente</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                @if (!Model.GetUberController().usuariosAusentes().Any())
+                {
+                    <h3>No se encuentran usuarios ausentes</h3>
+                }
+                else
+                {
+                    <table class="table list-size">
+                        <thead>
+                            <tr class="th-header">
+                                <th class="float-left">Nombre</th>
+                                <th class="float-right">Cambiar Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var m in Model.GetUberController().usuariosAusentes())
+                            {
+                                <tr>
+                                    <td class="float-left">@m.Nombre</td>
+                                    <td><a href="@Url.Action("CambiarEstado", "Secretaria", new { correo = m.Correo[0], estado = true, sess = Model.sesionSeleccionada.Numero})">Presente</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                
 
-                <label>Personas ausentes</label>
-                <table class="table list-size">
-                    <thead>
-                        <tr class="th-header">
-                            <th class="float-left">Nombre</th>
-                            <th class="float-right">Cambiar Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="danger">
-                            <td class="float-left">Fauricio</td>
-                            <td class="float-right"><a href="">Presente</a></td>
-                        </tr>
-                        <tr class="danger">
-                            <td class="float-left">Alejandro</td>
-                            <td class="float-right"><a href="">Presente</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+
             </center>
         </div>
 
@@ -74,24 +87,24 @@
                 <thead>
                     <tr class="th-header">
                         <th class="float-left">Nombre</th>
-                        <!-- <th class="float-right">Gestionar</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="info">
-                        <td class="float-left">Aprobación de la beca de Iván</td>
-                        <!-- <td class="float-right"><a href="">Modificar</a></td> -->
-                    </tr>
-                    <tr>
-                        <td>Aprobación del intercambio de Adán</td>
-                        <!-- <td class="float-right"><a href="" class="disabled">Modificar</a></td> -->
-                    </tr>
-                    <tr>
-                        <td>Solicitudes de cambio de carrera</td>
-                    </tr>
-                    <tr>
-                        <td>Cambio en Bases de datos 2</td>
-                    </tr>
+                    @for (int i = 0; i < Model.sesionSeleccionada.Agenda.Count; i++)
+                    {
+                        if (i != 0)
+                        {
+                            <tr>
+                                <td>@Model.sesionSeleccionada.Agenda.ElementAt(i).Nombre</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="info">
+                                <td>@Model.sesionSeleccionada.Agenda.ElementAt(i).Nombre</td>
+                            </tr>
+                        }                      
+                    }
                 </tbody>
             </table>
         </div>
@@ -104,8 +117,6 @@
                 <button type="button" class="btn btn-primary blue-bg" data-toggle="collapse" data-target="#votaciones"><span class="glyphicon glyphicon-menu-down"></span></button>
                 <div id="votaciones" class="collapse">
                     <form class="small-size-input" id="notificar" action="/Secretaria/Votacion" method="post">
-
-                        <input type="hidden" name="id" value="999"/>
 
                         <div class="form-group row margin-form-left">
                             <label for="example-number-input" class="">A favor</label>
@@ -128,7 +139,9 @@
                             </div>
                         </div>
 
-                        
+                        <input type="hidden" value=@Model.sesionSeleccionada.Agenda.ElementAt(0).Id_punto name="puntoID"/>
+
+                        <input type="hidden" value="@Model.sesionSeleccionada.Numero" name="sess"/>
 
                         <div class="form-group row margin-form-left">
                             <button type="submit" class="btn btn-primary float-left blue-bg">Guardar</button>
@@ -148,11 +161,10 @@
                             <div class="">
                                 <input class="form-control" list="miembros" name="correo">
                                 <datalist id="miembros">
-                                    <option value="Miembro 1">
-                                    <option value="Miembro 2">
-                                    <option value="Miembro 3">
-                                    <option value="Miembro 4">
-                                    <option value="Miembro 5">
+                                    @foreach (var m in Model.GetUberController().usuariosPresentes())
+                                    {
+                                        <option value="@m.Correo[0]">@m.Nombre</option>
+                                    }
                                 </datalist>
                             </div>
                         </div>
@@ -165,6 +177,9 @@
                             </div>
                         </div>
 
+                        <input type="hidden" value=@Model.sesionSeleccionada.Agenda.ElementAt(0).Id_punto name="puntoID"/>
+                        <input type="hidden" value="@Model.sesionSeleccionada.Numero" name="sess" />
+
                         <div class="form-group row margin-form-left">
                             <button type="submit" class="btn btn-primary float-left blue-bg">Guardar</button>
                         </div>
@@ -172,10 +187,10 @@
                 </div>
             </div>
             
-            <h2>Aprobación de la beca de Iván</h2>
-            <h3>Votos a favor: 0</h3>
-            <h3>Votos en contra: 0</h3>
-            <h3>Abstenciones: 0</h3>
+            <h2>Punto actual: @Model.sesionSeleccionada.Agenda.ElementAt(0).Nombre</h2>
+            <h3>Votos a favor: @Model.sesionSeleccionada.Agenda.ElementAt(0).Votacion[0]</h3>
+            <h3>Votos en contra: @Model.sesionSeleccionada.Agenda.ElementAt(0).Votacion[1]</h3>
+            <h3>Abstenciones: @Model.sesionSeleccionada.Agenda.ElementAt(0).Votacion[2]</h3>
 
             <div>
                 <h3>Comentarios</h3>
@@ -184,17 +199,18 @@
                         <tr class="th-header">
                             <th class="float-left">Miembro</th>
                             <th class="float-center">Comentario</th>
-                            <th class="float-right">Eliminar</th>
                             <!-- <th class="float-right">Gestionar</th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td class="float-left">Miembro 1</td>
-                            <td class="float-center"><p>Excelente!!!</p></td>
-                            <td class="float-right"><a href="">Eliminar</a></td>
-                            <!-- <td class="float-right"><a href="">Modificar</a></td> -->
-                        </tr>
+                        
+                            @foreach (var c in @Model.sesionSeleccionada.Agenda.ElementAt(0).Comentarios)
+                            {
+                                <tr>
+                                    <td class="float-left">@c.Miembro.Nombre</td>
+                                    <td class="float-center"><p>@c.Txtcomentario</p></td>                                    
+                                </tr>
+                            }
                     </tbody>
                 </table>
             </div>

@@ -25,7 +25,6 @@ namespace GestorC.Models
         public Proxy()
         {
             controller = UberController.Instance.getControlador();
-
             //login(usuario, contrasena);
         }
 
@@ -49,7 +48,7 @@ namespace GestorC.Models
                         {
                             int ret = 0;
                             Console.WriteLine(usuario + " / " + controller.PC);
-                            if (usuario == controller.PC)
+                            if (usuario == "Fauriciocr@gmail.com")
                             {
                                 setFachada(fachadaPC);
                                 ret = fachadaPC;
@@ -63,7 +62,8 @@ namespace GestorC.Models
                             }
                             this.usuario = m;
                             this.logueado = true;
-                            //fachada.registrarObserver();
+                            UberController.Instance.getControlador().modificarAsistencia(usuario, true);
+                            UberController.Instance.modificarQuorum(true);
                             return ret;
                         }
                     }

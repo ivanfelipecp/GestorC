@@ -164,6 +164,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MiembroController.cs" />
+    <Compile Include="Controllers\PCController.cs" />
     <Compile Include="Controllers\SecretariaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,6 +239,11 @@
     <Content Include="Views\Shared\SecretariaLayout.cshtml" />
     <Content Include="Views\Shared\SecretariaNoNavbar.cshtml" />
     <Content Include="Views\Login\Prueba1.cshtml" />
+    <Content Include="Views\PC\Index.cshtml" />
+    <Content Include="Views\PC\PrevioAgenda.cshtml" />
+    <Content Include="Views\Miembro\Index.cshtml" />
+    <Content Include="Views\Miembro\Durante.cshtml" />
+    <Content Include="Views\Miembro\PrevioAgenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\acuerdos\" />

@@ -10,8 +10,8 @@ namespace GestorC.Models
 {
     public class ControladorProyecto1
     {
-        Gestor g;
-        string PCmiembro;
+        private Gestor g;
+        private string PCmiembro;
 
         public ControladorProyecto1()
         {
@@ -28,7 +28,7 @@ namespace GestorC.Models
                     }
                 }
                 UberController.Instance.cargarQuorum();
-                PC = "aj@gmail.com";
+                PCmiembro = "Fauriciocr@gmail.com";
             }
 
         }

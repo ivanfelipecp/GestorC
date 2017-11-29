@@ -32,10 +32,9 @@ namespace GestorC.Controllers
 
                 UberController.Instance.addUsuario(proxy);
                 //return Content(UberController.Instance.getProxys().Count.ToString());
-
-                if (n == proxy.getFachadaPC())
+                if (n == pc)
                 {
-                    return Content("PC");
+                    return RedirectToAction("Index", "PC");
                 }
                 else if(n == sc){
 
@@ -43,7 +42,7 @@ namespace GestorC.Controllers
                 }
                 else
                 {
-                    return Content("M");
+                    return RedirectToAction("Index","Miembro");
                 }
             }
             return RedirectToAction("Index", "Login", new { msg = "Usuario incorrecto"});

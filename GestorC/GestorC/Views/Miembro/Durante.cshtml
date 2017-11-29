@@ -1,0 +1,87 @@
+﻿@model GestorC.ViewModels.VM_Secretaria
+@{
+    ViewBag.Title = "Durante";
+    Layout = "~/Views/Shared/SecretariaLayout.cshtml";
+}
+
+<div class="container blue">
+    <h4><span class="glyphicon glyphicon-hand-right"></span> Durante</h4>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="float-left">Sesión @Model.sesionSeleccionada.Numero</h1>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <!--Tabla de puntos-->
+        <div class="col-sm-6">
+            <label>Puntos de agenda</label>
+            <table class="table large-size-input">
+                <thead>
+                    <tr class="th-header">
+                        <th class="float-left">Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.sesionSeleccionada.Agenda.Count; i++)
+                    {
+                        if (i != 0)
+                        {
+                            <tr>
+                                <td>@Model.sesionSeleccionada.Agenda.ElementAt(i).Nombre</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="info">
+                                <td>@Model.sesionSeleccionada.Agenda.ElementAt(i).Nombre</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Punto -->
+        <div class="col-sm-6 div-border-left">
+            <!-- Registrar votacion -->
+            <!-- Comentarios -->
+            <h2>Punto actual: @Model.sesionSeleccionada.Agenda.ElementAt(0).Nombre</h2>
+            <h3>Votos a favor: @Model.sesionSeleccionada.Agenda.ElementAt(0).Votacion[0]</h3>
+            <h3>Votos en contra: @Model.sesionSeleccionada.Agenda.ElementAt(0).Votacion[1]</h3>
+            <h3>Abstenciones: @Model.sesionSeleccionada.Agenda.ElementAt(0).Votacion[2]</h3>
+
+            <div>
+                <h3>Comentarios</h3>
+                <table class="table large-size-input">
+                    <thead>
+                        <tr class="th-header">
+                            <th class="float-left">Miembro</th>
+                            <th class="float-center">Comentario</th>
+                            <!-- <th class="float-right">Gestionar</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var c in @Model.sesionSeleccionada.Agenda.ElementAt(0).Comentarios)
+                        {
+                            <tr>
+                                <td class="float-left">@c.Miembro.Nombre</td>
+                                <td class="float-center"><p>@c.Txtcomentario</p></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div> <!-- columna -->
+    </div> <!-- row -->
+</div> <!-- container -->

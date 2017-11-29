@@ -1,0 +1,44 @@
+﻿@model GestorC.ViewModels.VM_Secretaria
+@{
+    ViewBag.Title = "PrevioAgenda";
+    Layout = "~/Views/Shared/SecretariaLayout.cshtml";
+}
+
+<h2>Formulario de solicitud de puntos para la sesión @Model.sesionSeleccionada.Numero</h2>
+<form class="small-size-input" id="solicitud" action="/Miembro/PrevioAgenda" method="post">
+
+    <div class="form-group row margin-form-left">
+        <label>Nombre</label>
+        <div>
+            <textarea id="nombre" name="nombre" rows="5" cols="70" form="solicitud" placeholder=""></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row margin-form-left">
+        <label>Resultandos</label>
+        <div>
+            <textarea id="resultandos" name="resultandos" rows="5" cols="70" form="solicitud" placeholder=""></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row margin-form-left">
+        <label>Considerandos</label>
+        <div>
+            <textarea id="considerandos" name="considerandos" rows="5" cols="70" form="solicitud" placeholder=""></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row margin-form-left">
+        <label>Se acuerda</label>
+        <div>
+            <textarea id="acuerda" name="acuerda" rows="5" cols="70" form="solicitud" placeholder=""></textarea>
+        </div>
+    </div>
+
+    <input type="hidden" value="@Model.sesionSeleccionada.Numero" name="sess"/>
+
+    <div class="form-group row margin-form-left">
+        <button type="submit" class="btn btn-primary float-left blue-bg">Enviar</button>
+    </div>
+</form>
+

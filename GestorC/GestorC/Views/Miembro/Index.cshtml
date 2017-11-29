@@ -1,0 +1,35 @@
+﻿@model GestorC.ViewModels.VM_Secretaria
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/SecretariaLayout.cshtml";
+}
+
+<div class="blue">
+    <h4><span class="glyphicon glyphicon-hand-right"></span> Home</h4>
+</div>
+<h1 class="francois blue">Bienvenido al gestor de sesiones de consejo</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        <label>Historial de sesiones</label>
+        <ul class="list-group small-size-input">
+            @foreach (var s in Model.GetUberController().getControlador().getAllNumeroSesiones())
+            {
+                if (Model.GetUberController().getControlador().getSesion(s).Estado == null)
+                {
+                    <li class="list-group-item"><a href="@Url.Action("PrevioAgenda", "Miembro", new { sesion = s})">@s</a><span class="badge blue-bg">Creada</span></li>
+                }
+                else if (Model.GetUberController().getControlador().getSesion(s).Estado.Value)
+                {
+                    <li class="list-group-item">@s<span class="badge red-bg">Cerrada</span></li>
+                }
+                else
+                {
+                    <li class="list-group-item"><a href="@Url.Action("Durante", "Miembro", new { sesion = s})">@s</a><span class="badge green-bg">Abierta</span></li>
+                }
+            }
+        </ul>
+    </div>
+</div>

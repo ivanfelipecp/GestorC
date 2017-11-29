@@ -118,15 +118,21 @@ namespace GestorC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Votacion(string id, int favor, int contra, int abstenciones)
+        public ActionResult Votacion(int favor, int contra, int abstenciones, int puntoID, string sess)
         {
-            return Content(id.ToString() + favor.ToString() + contra.ToString() + abstenciones.ToString());
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            prox.agregarVotacion(puntoID, favor, contra, abstenciones);
+            return RedirectToAction("Durante", "Secretaria", new { sesion = sess });
+            //return Content(id.ToString() + favor.ToString() + contra.ToString() + abstenciones.ToString());
         }
 
         [HttpPost]
-        public ActionResult Comentario(string correo, string comentario)
+        public ActionResult Comentario(string correo, string comentario, int puntoID, string sess)
         {
-            return Content(correo + comentario);
+            //return Content(correo + comentario + puntoID);
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            prox.agregarComentario(puntoID, correo, comentario);
+            return RedirectToAction("Durante", "Secretaria", new { sesion = sess });
         }
 
         [HttpGet]
@@ -194,5 +200,12 @@ namespace GestorC.Controllers
             return RedirectToAction("Download","Secretaria", new { filename = "Acuerdo Punto - " + p.Nombre + ".pdf", path = Server.MapPath("~/App_Data/acuerdos/")});
         }
 
+        [HttpGet]
+        public ActionResult CambiarEstado(string correo, bool estado, string sess)
+        {
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            prox.modificarAsistencia(correo, estado);
+            return RedirectToAction("Durante", new { sesion = sess });
+        }
     }
 }
