@@ -8,7 +8,7 @@
     <h4><span class="glyphicon glyphicon-hand-right"></span> @Model.sesionSeleccionada.Numero > selección de puntos</h4>
 </div>
 <h1 class="francois blue">Puntos para la sesión @Model.sesionSeleccionada.Numero</h1>
-
+<a href="@Url.Action("IniciarSesion", "PC", new { sess = Model.sesionSeleccionada.Numero})">Click acá para iniciar la sesión</a>
 <hr />
 
 <div class="row">

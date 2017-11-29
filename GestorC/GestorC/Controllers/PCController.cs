@@ -41,5 +41,14 @@ namespace GestorC.Controllers
             prox.eliminarSolicitud(int.Parse(id));
             return RedirectToAction("PrevioAgenda", new { sesion = sess });
         }
+
+        [HttpGet]
+        public ActionResult IniciarSesion(string sess)
+        {
+            Proxy prox = UberController.Instance.getProxy(Session["current"] as string);
+            //prox.eliminarSolicitud(int.Parse(id));
+            prox.iniciarSesion(sess);
+            return RedirectToAction("Index");
+        }
     }
 }
